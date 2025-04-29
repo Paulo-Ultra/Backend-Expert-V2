@@ -3,5 +3,5 @@ spring:
     name: 'user-service-api'
   data:
     mongodb:
-      uri: 'mongodb+srv://help-desk-user:help-desk-user@cluster0.fifji9i.mongodb.net/helpdeskdb?retryWrites=true&w=majority&appName=Cluster0'
+      uri: 'mongodb+srv://help-desk-user:{{MONGO_PASSWORD}}@cluster0.fifji9i.mongodb.net/helpdeskdb?retryWrites=true&w=majority&appName=Cluster0'
       auto-index-creation: true
