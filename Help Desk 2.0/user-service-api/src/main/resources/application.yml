@@ -5,3 +5,9 @@ spring:
     mongodb:
       uri: 'mongodb+srv://help-desk-user:${MONGO_PASSWORD}@cluster0.fifji9i.mongodb.net/helpdeskdb?retryWrites=true&w=majority&appName=Cluster0'
       auto-index-creation: true
+
+springdoc:
+  openapi:
+    title: 'User Service API'
+    description: 'Component responsible for user management created on Formação Backend Expert with Valdir Cezar'
+    version: '1.0.0'
