@@ -9,6 +9,8 @@ import models.requests.CreateUserRequest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -31,5 +33,11 @@ public class UserService {
                 .ifPresent(user -> {
                     throw new DataIntegrityViolationException("User with email: " + email + " already exists");
                 });
+    }
+
+    public List<UserResponse> findAll() {
+        return userRepository.findAll()
+                .stream().map(userMapper::fromEntity)
+                .toList();
     }
 }
