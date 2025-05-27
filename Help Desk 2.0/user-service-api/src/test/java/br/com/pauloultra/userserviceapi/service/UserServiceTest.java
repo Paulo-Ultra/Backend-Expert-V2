@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
@@ -97,5 +98,25 @@ class UserServiceTest {
         verify(encoder).encode(request.password());
         verify(userRepository).save(any(User.class));
         verify(userRepository).findByEmail(request.email());
+    }
+
+    @Test
+    void whenCallSaveWithInvalidEmailThenThrowDataIntegrityViolationException() {
+        final var request = generateMock(CreateUserRequest.class);
+        final var entity = generateMock(User.class);
+
+        when(userRepository.findByEmail(anyString())).thenReturn(Optional.of(entity));
+
+        try {
+            userService.save(request);
+        } catch (Exception e) {
+            assertEquals(DataIntegrityViolationException.class, e.getClass());
+            assertEquals("User with email: " + request.email() + " already exists", e.getMessage());
+        }
+
+        verify(userRepository).findByEmail(request.email());
+        verify(mapper, never()).fromRequest(request);
+        verify(encoder, never()).encode(request.password());
+        verify(userRepository, never()).save(any(User.class));
     }
 }
