@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
 import static br.com.pauloultra.userserviceapi.creator.CreatorUtils.generateMock;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -29,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 class UserControllerImplTest {
 
+    public static final String VALID_EMAIL = "teste@gmail.com";
     @Autowired
     private MockMvc mockMvc;
 
@@ -113,6 +115,25 @@ class UserControllerImplTest {
                 .andExpect(jsonPath("$.timestamp").isNotEmpty());
 
         userRepository.deleteById(entity.getId());
+    }
+
+    @Test
+    void testSaveUserWithNameEmptyThenThrowBadRequest() throws Exception {
+       final var request = generateMock(CreateUserRequest.class).withName("").withEmail(VALID_EMAIL);
+
+        mockMvc.perform(post("/api/users")
+                        .contentType(APPLICATION_JSON)
+                        .content(toJson(request))
+                ).andExpect(status().isConflict())
+                .andExpect(jsonPath("$.message").value("Exception in validation attributes"))
+                .andExpect(jsonPath("$.error").value("Validation Exception"))
+                .andExpect(jsonPath("$.path").value("/api/users"))
+                .andExpect(jsonPath("$.status").value(BAD_REQUEST.value()))
+                .andExpect(jsonPath("$.timestamp").isNotEmpty())
+                .andExpect(jsonPath("$.errors[?(@.fieldName == 'name' && @.message == 'Name must contain between 3 and 50 characters')]").exists())
+                .andExpect(jsonPath("$.errors[?(@.fieldName == 'name' && @.message == 'Name cannot be empty')]").exists());
+
+        userRepository.deleteByEmail(VALID_EMAIL);
     }
 
     private String toJson(final Object object) throws Exception {
