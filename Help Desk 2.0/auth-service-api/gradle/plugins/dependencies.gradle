@@ -37,7 +37,7 @@ dependencies {
         because('Starter para validação de dados')
     }
 
-    implementation ('br.com.pauloultra:hd-commons-lib:1.0.0') {
+    implementation ('br.com.pauloultra:hd-commons-lib:1.0.0'){
         because('Lib para compartilhar código comum entre os projetos')
     }
 
