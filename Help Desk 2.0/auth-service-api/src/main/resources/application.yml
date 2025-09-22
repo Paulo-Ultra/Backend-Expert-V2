@@ -1,3 +1,5 @@
 spring:
   application:
     name: 'auth-service-api'
+  main:
+    allow-bean-definition-overriding: true
