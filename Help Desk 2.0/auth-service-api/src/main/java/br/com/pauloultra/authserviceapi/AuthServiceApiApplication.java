@@ -1,4 +1,4 @@
-package br.com.paulo.ultra.authserviceapi;
+package br.com.pauloultra.authserviceapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

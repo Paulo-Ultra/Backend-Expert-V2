@@ -1,4 +1,4 @@
-package br.com.paulo.ultra.authserviceapi;
+package br.com.pauloultra.authserviceapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

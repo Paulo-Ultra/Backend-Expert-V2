@@ -1,4 +1,4 @@
-package br.com.paulo.ultra.authserviceapi.controller;
+package br.com.pauloultra.authserviceapi.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -7,8 +7,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import models.exceptions.StandardError;
+import models.reponses.AuthenticationResponse;
 import models.requests.AuthenticateRequest;
-import models.response.AuthenticationResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
