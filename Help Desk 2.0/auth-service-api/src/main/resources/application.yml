@@ -1,3 +1,11 @@
 spring:
   application:
     name: 'auth-service-api'
+  main:
+    allow-bean-definition-overriding: true
+  data:
+    mongodb:
+      uri: 'mongodb+srv://help-desk-user:help-desk-user@cluster0.fifji9i.mongodb.net/helpdeskdb?retryWrites=true&w=majority&appName=Cluster0'
+      auto-index-creation: true
+jwt.secret: 'ALcdYnCds0h2AxCm6Mai5S98jvLV+l6k4kfjoM/FRxmkVN6ovj6W88h4PPBqhpVkuZl/Tcga4ASNrjzHA6J/zg=='
+jwt.expiration: 120000
