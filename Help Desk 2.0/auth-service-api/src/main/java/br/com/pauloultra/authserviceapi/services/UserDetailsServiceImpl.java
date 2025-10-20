@@ -22,6 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         final var entity = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
 
+
         return UserDetailsDTO.builder()
                 .id(entity.getId())
                 .name(entity.getName())
