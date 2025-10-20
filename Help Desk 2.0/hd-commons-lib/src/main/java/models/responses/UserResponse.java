@@ -1,4 +1,4 @@
-package models.reponses;
+package models.responses;
 
 import models.enums.ProfileEnum;
 

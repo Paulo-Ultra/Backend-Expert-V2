@@ -9,3 +9,4 @@ spring:
       auto-index-creation: true
 jwt.secret: 'ALcdYnCds0h2AxCm6Mai5S98jvLV+l6k4kfjoM/FRxmkVN6ovj6W88h4PPBqhpVkuZl/Tcga4ASNrjzHA6J/zg=='
 jwt.expiration: 120000
+jwt.expiration-sec.refresh-token: 3600

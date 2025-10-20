@@ -4,7 +4,7 @@ import br.com.pauloultra.authserviceapi.security.dtos.UserDetailsDTO;
 import br.com.pauloultra.authserviceapi.utils.JWTUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import models.reponses.AuthenticationResponse;
+import models.responses.AuthenticationResponse;
 import models.requests.AuthenticateRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -46,8 +46,8 @@ public class JWTAuthenticationImpl {
         log.info("Successfully authenticated user: {}", detailsDTO.getUsername());
         final var token = jwtUtils.generateToken(detailsDTO);
         return AuthenticationResponse.builder()
-                .type("JWT")
-                .token("Bearer " + token)
+                .type("Bearer")
+                .token(token)
                 .build();
     }
 }

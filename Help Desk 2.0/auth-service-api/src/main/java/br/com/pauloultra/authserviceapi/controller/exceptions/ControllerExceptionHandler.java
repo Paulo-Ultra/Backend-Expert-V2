@@ -1,9 +1,11 @@
 package br.com.pauloultra.authserviceapi.controller.exceptions;
 
 import jakarta.servlet.http.HttpServletRequest;
+import models.exceptions.RefreshTokenExpired;
 import models.exceptions.StandardError;
 import models.exceptions.ValidationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -13,8 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.util.ArrayList;
 
 import static java.time.LocalDateTime.now;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.*;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -53,4 +54,19 @@ public class ControllerExceptionHandler {
 
         return ResponseEntity.badRequest().body(errors);
     }
+
+    @ExceptionHandler({RefreshTokenExpired.class, BadCredentialsException.class})
+    ResponseEntity<StandardError> handleRefreshTokenExpired(final RuntimeException ex,final HttpServletRequest request) {
+
+        return ResponseEntity.status(UNAUTHORIZED).body(
+                StandardError.builder()
+                        .timestamp(now())
+                        .status(UNAUTHORIZED.value())
+                        .error(UNAUTHORIZED.getReasonPhrase())
+                        .message(ex.getMessage())
+                        .path(request.getRequestURI())
+                        .build()
+        );
+    }
+
 }
