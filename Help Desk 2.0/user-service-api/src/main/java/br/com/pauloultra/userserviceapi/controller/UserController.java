@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import models.exceptions.StandardError;
-import models.reponses.UserResponse;
+import models.responses.UserResponse;
 import models.requests.CreateUserRequest;
 import models.requests.UpdateUserRequest;
 import org.springframework.http.ResponseEntity;

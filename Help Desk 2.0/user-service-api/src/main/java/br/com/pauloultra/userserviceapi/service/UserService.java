@@ -5,7 +5,7 @@ import br.com.pauloultra.userserviceapi.mapper.UserMapper;
 import br.com.pauloultra.userserviceapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import models.exceptions.ResourceNotFoundException;
-import models.reponses.UserResponse;
+import models.responses.UserResponse;
 import models.requests.CreateUserRequest;
 import models.requests.UpdateUserRequest;
 import org.springframework.dao.DataIntegrityViolationException;

@@ -3,7 +3,7 @@ package br.com.pauloultra.userserviceapi.controller.impl;
 import br.com.pauloultra.userserviceapi.controller.UserController;
 import br.com.pauloultra.userserviceapi.service.UserService;
 import lombok.RequiredArgsConstructor;
-import models.reponses.UserResponse;
+import models.responses.UserResponse;
 import models.requests.CreateUserRequest;
 import models.requests.UpdateUserRequest;
 import org.springframework.http.ResponseEntity;

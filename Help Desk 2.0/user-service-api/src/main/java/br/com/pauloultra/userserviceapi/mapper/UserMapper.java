@@ -1,7 +1,7 @@
 package br.com.pauloultra.userserviceapi.mapper;
 
 import br.com.pauloultra.userserviceapi.entity.User;
-import models.reponses.UserResponse;
+import models.responses.UserResponse;
 import models.requests.CreateUserRequest;
 import models.requests.UpdateUserRequest;
 import org.mapstruct.Mapper;
